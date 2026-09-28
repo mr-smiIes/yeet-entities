@@ -177,10 +177,7 @@ public class YeetEntities implements ModInitializer {
 
                     held.setNoGravity(true);
 
-                    /*
-                     * No clipping while being carried.
-                     */
-                    held.setNoClip(true);
+                    
 
                 } else if (getHeldId(player) != -1) {
 
@@ -260,7 +257,6 @@ public class YeetEntities implements ModInitializer {
 
         entity.setNoGravity(true);
 
-        entity.setNoClip(true);
 
         entity.setVelocity(Vec3d.ZERO);
 
@@ -318,7 +314,7 @@ public class YeetEntities implements ModInitializer {
         /*
          * Turn collision back on.
          */
-        entity.setNoClip(false);
+        
 
         entity.setNoGravity(
                 YeetConfig.get().preserveNoGravity
@@ -552,7 +548,7 @@ public class YeetEntities implements ModInitializer {
 
         entity.getCommandTags().remove(HELD_KEY);
 
-        entity.setNoClip(false);
+        
 
         entity.setNoGravity(false);
 
@@ -619,7 +615,7 @@ public class YeetEntities implements ModInitializer {
             entity.getCommandTags()
                     .remove(HELD_KEY);
 
-            entity.setNoClip(false);
+            
 
             entity.setNoGravity(false);
         }
