@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "yeetentities",
+  "version": "${version}",
+  "name": "Yeet Entities",
+  "description": "Shift-left-click an entity to grab it, then right-click to launch it at ridiculous speed.",
+  "authors": ["wacky man"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/yeetentities/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.wackyman.yeetentities.YeetEntities"],
+    "client": ["com.wackyman.yeetentities.client.YeetEntitiesClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "1.20.4",
+    "fabric-api": ">=0.97.0"
+  },
+  "mixins": ["yeetentities.mixins.json"]
+}
