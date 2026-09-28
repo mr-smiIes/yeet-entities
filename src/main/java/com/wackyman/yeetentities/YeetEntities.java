@@ -46,14 +46,14 @@ public class YeetEntities implements ModInitializer {
         });
 
         UseItemCallback.EVENT.register((player, world, hand) -> {
-            if (!world.isClient && hand == Hand.MAIN_HAND && player instanceof ServerPlayerEntity serverPlayer) {
-                if (getHeldEntity(serverPlayer) != null) {
-                    yeet(serverPlayer);
-                    return TypedActionResult.success(player.getStackInHand(hand));
-                }
-            }
-            return ActionResult.PASS;
-        });
+    if (!world.isClient && hand == Hand.MAIN_HAND && player instanceof ServerPlayerEntity serverPlayer) {
+        if (getHeldEntity(serverPlayer) != null) {
+            yeet(serverPlayer);
+            return TypedActionResult.success(player.getStackInHand(hand));
+        }
+    }
+    return TypedActionResult.pass(player.getStackInHand(hand));
+});
 
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> YeetNetwork.sendHeld(handler.player, getHeldId(handler.player)));
         ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> { LAST_POSITIONS.remove(handler.player.getUuid()); HELD_ENTITIES.remove(handler.player.getUuid()); });
