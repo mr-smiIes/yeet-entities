@@ -6,9 +6,16 @@ plugins {
 version = project.mod_version
 group = project.maven_group
 
-base { archivesName = project.archives_base_name }
+base {
+    archivesName = project.archives_base_name
+}
 
-repositories { maven { name = 'Fabric'; url = 'https://maven.fabricmc.net/' } }
+repositories {
+    maven {
+        name = 'Fabric'
+        url = 'https://maven.fabricmc.net/'
+    }
+}
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -19,19 +26,37 @@ dependencies {
 
 processResources {
     inputs.property 'version', project.version
-    filesMatching('fabric.mod.json') { expand 'version': project.version }
+
+    filesMatching('fabric.mod.json') {
+        expand 'version': project.version
+    }
 }
 
 def targetJavaVersion = 17
+
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
     options.release = targetJavaVersion
 }
-java { toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion); withSourcesJar() }
 
-jar { from('LICENSE') { rename { "${it}_${project.archivesName.get()}" } } }
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    withSourcesJar()
+}
+
+jar {
+    from('LICENSE') {
+        rename { "${it}_${project.archives_base_name}" }
+    }
+}
 
 publishing {
-    publications { mavenJava(MavenPublication) { from components.java } }
-    repositories { }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+    }
 }
