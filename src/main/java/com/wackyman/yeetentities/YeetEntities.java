@@ -1,5 +1,5 @@
 package com.wackyman.yeetentities;
-
+import net.minecraft.util.TypedActionResult;
 import com.wackyman.yeetentities.config.YeetConfig;
 import com.wackyman.yeetentities.network.YeetNetwork;
 import net.fabricmc.api.ModInitializer;
@@ -49,7 +49,7 @@ public class YeetEntities implements ModInitializer {
             if (!world.isClient && hand == Hand.MAIN_HAND && player instanceof ServerPlayerEntity serverPlayer) {
                 if (getHeldEntity(serverPlayer) != null) {
                     yeet(serverPlayer);
-                    return ActionResult.SUCCESS;
+                    return TypedActionResult.success(player.getStackInHand(hand));
                 }
             }
             return ActionResult.PASS;
